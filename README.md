@@ -97,29 +97,37 @@ NODE_ENV=development
 
 ## ☁️ Render Deployment Guide
 
-SD-Share is deployment-ready for [Render.com](https://render.com).
+SD-Share is deployment-ready for [Render.com](https://render.com) with **Zero-Config Environments**. The app automatically detects its host environment and wires up internal URLs on the fly.
 
-### Option 1: Separate Services (Recommended for Scale)
+### Option 1: Unified Full-Stack Service (Recommended)
+Host both the Next.js frontend and Express backend on a single unified server instance. Express natively handles WebSocket traffic and silently proxies UI requests to the Next.js instance running securely in the background.
 
-**Backend (Web Service):**
-- Environment: Node
-- Build Command: `npm install`
+**Web Service Setup:**
+- Name: `sd-share`
+- Root Directory: *(Leave completely blank)*
+- Environment: `Node`
+- Build Command: `npm run install-all && npm run build`
 - Start Command: `npm start`
-- Root Directory: `backend`
 - Environment Variables:
   - `NODE_ENV=production`
-  - `FRONTEND_URL=https://your-frontend-url.onrender.com`
+*(No URL configuration needed! The codebase automatically detects Render's internal URLs.)*
+
+### Option 2: Separate Services (For Heavy Scaling)
+Host the frontend and backend on two completely separate Render instances.
+
+**Backend (Web Service):**
+- Root Directory: `backend`
+- Build Command: `npm install`
+- Start Command: `npm start`
+- Environment Variables:
+  - `NODE_ENV=production`
 
 **Frontend (Static Site or Web Service):**
-- Environment: Node
+- Root Directory: `frontend`
 - Build Command: `npm install && npm run build`
 - Start Command: `npm start`
-- Root Directory: `frontend`
 - Environment Variables:
   - `NEXT_PUBLIC_SOCKET_URL=https://your-backend-url.onrender.com`
-
-### Option 2: Unified Monorepo Deployment
-If deploying as a single service, set up a custom build script that builds the frontend and serves the static files from Express. *Note: This requires modifying `backend/src/app.js` to serve `frontend/.next/static`.*
 
 ## 🔮 Future Roadmap
 

@@ -166,32 +166,32 @@ export default function RoomPage(props) {
                           </p>
                           <p className="text-xs text-zinc-400">{(file.size / (1024 * 1024)).toFixed(2)} MB</p>
                         </div>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-1 sm:space-x-2">
                           {/* Sender Buttons */}
                           {file.isMine && status === 'ready' && (!transfers[file.id] || transfers[file.id]?.status === 'idle') && (
-                            <Button size="sm" onClick={() => startTransfer(file.id)}>Announce</Button>
+                            <Button size="sm" className="h-7 text-[10px] px-2 sm:h-9 sm:text-sm sm:px-3" onClick={() => startTransfer(file.id)}>Announce</Button>
                           )}
                           {file.isMine && status === 'ready' && transfers[file.id] && ['waiting'].includes(transfers[file.id]?.status) && (
-                            <Button size="sm" variant="outline" disabled>Waiting...</Button>
+                            <Button size="sm" variant="outline" className="h-7 text-[10px] px-2 sm:h-9 sm:text-sm sm:px-3" disabled>Waiting...</Button>
                           )}
                           {file.isMine && status === 'ready' && transfers[file.id] && ['disconnected', 'canceled', 'completed'].includes(transfers[file.id]?.status) && (
-                            <Button size="sm" onClick={() => startTransfer(file.id)}>Resend</Button>
+                            <Button size="sm" className="h-7 text-[10px] px-2 sm:h-9 sm:text-sm sm:px-3" onClick={() => startTransfer(file.id)}>Resend</Button>
                           )}
                           
                           {/* Receiver Buttons */}
                           {!file.isMine && (!transfers[file.id] || ['idle', 'waiting', 'disconnected', 'canceled'].includes(transfers[file.id]?.status)) && (
-                            <Button size="sm" onClick={() => requestDownload(file.id)}>Download</Button>
+                            <Button size="sm" className="h-7 text-[10px] px-2 sm:h-9 sm:text-sm sm:px-3" onClick={() => requestDownload(file.id)}>Download</Button>
                           )}
                           
                           {transfers[file.id]?.status === 'transferring' && (
-                            <Button size="sm" variant="destructive" onClick={() => cancelTransfer(file.id)}>
-                              <XCircle className="w-4 h-4 mr-1" /> Cancel
+                            <Button size="sm" variant="destructive" className="h-7 text-[10px] px-2 sm:h-9 sm:text-sm sm:px-3" onClick={() => cancelTransfer(file.id)}>
+                              <XCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1" /> Cancel
                             </Button>
                           )}
                           
                           {transfers[file.id]?.status !== 'transferring' && (
-                            <Button size="sm" variant="ghost" className="text-red-400 hover:text-red-300 hover:bg-red-400/10" onClick={() => removeFromQueue(file.id)}>
-                              <Trash2 className="w-4 h-4" />
+                            <Button size="sm" variant="ghost" className="h-7 w-7 p-0 sm:h-9 sm:w-9 sm:p-auto text-red-400 hover:text-red-300 hover:bg-red-400/10" onClick={() => removeFromQueue(file.id)}>
+                              <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
                             </Button>
                           )}
                         </div>
@@ -202,7 +202,6 @@ export default function RoomPage(props) {
                         <div className="mt-4">
                           <div className="flex justify-between text-xs text-zinc-400 mb-1">
                             <span>{transfers[file.id]?.progress || 0}%</span>
-                            <span>{transfers[file.id]?.speed || 0} MB/s</span>
                           </div>
                           <div className="w-full bg-zinc-800 rounded-full h-2 overflow-hidden">
                             <motion.div 
