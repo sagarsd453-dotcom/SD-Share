@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
+    "@tailwindcss/postcss": "^4",
+    "babel-plugin-react-compiler": "1.0.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.8",
     "localforage": "^1.10.0",
@@ -20,13 +22,11 @@
     "react-redux": "^9.1.0",
     "sd-share": "file:..",
     "socket.io-client": "^4.7.4",
-    "tailwind-merge": "^2.2.1"
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss": "^4"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "16.2.9",
-    "tailwindcss": "^4"
+    "eslint-config-next": "16.2.9"
   }
 }

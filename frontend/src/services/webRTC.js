@@ -22,7 +22,9 @@ class WebRTCManager {
 
   connectSocket(url) {
     if (!this.socket) {
-      this.socket = io(url || 'http://localhost:5000');
+      // Auto-detect the unified service URL if not explicitly provided
+      const socketUrl = url || (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:5000');
+      this.socket = io(socketUrl);
       this.setupSocketListeners();
     }
   }
