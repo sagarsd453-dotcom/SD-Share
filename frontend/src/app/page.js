@@ -92,7 +92,7 @@ export default function Home() {
           
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black flex items-center italic -skew-x-6 uppercase">
             <motion.span 
-              className="text-transparent bg-clip-text bg-gradient-to-br from-indigo-400 via-purple-400 to-pink-400 tracking-tighter drop-shadow-2xl"
+              className="text-transparent bg-clip-text bg-gradient-to-br from-indigo-400 via-purple-400 to-pink-400 tracking-tighter drop-shadow-2xl pr-2"
               animate={{ 
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
                 filter: ["drop-shadow(0 0 10px rgba(168,85,247,0.2))", "drop-shadow(0 0 25px rgba(168,85,247,0.6))", "drop-shadow(0 0 10px rgba(168,85,247,0.2))"]
